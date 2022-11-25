@@ -1,2 +1,6 @@
+org\generation\italy\eventi\ProgrammaEventi$1.class
 org\generation\italy\eventi\Evento.class
 org\generation\italy\eventi\Main.class
+org\generation\italy\eventi\ProgrammaEventi$EventoDateComparator.class
+org\generation\italy\eventi\ProgrammaEventi.class
+org\generation\italy\eventi\Concerto.class

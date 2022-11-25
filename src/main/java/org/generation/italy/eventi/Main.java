@@ -1,8 +1,5 @@
 package org.generation.italy.eventi;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -27,6 +24,10 @@ public class Main {
 				
 				if(wantToAddEvent.equals("y")) {
 					
+					System.out.println("Che tipo di evento?\n1. Concerto\n2. Generico");
+					int eventType = sc.nextInt();
+					
+					
 					System.out.println("Nome evento: ");
 					String evName = sc.next();
 					
@@ -36,8 +37,19 @@ public class Main {
 					System.out.println("Posti evento: ");
 					int evSeats = sc.nextInt();
 					
-					progEv.addEvent(new Evento(evName, evDate, evSeats));
-					
+					if(eventType == 1) {
+						System.out.println("Inserisci data: (hh:mm:ss)");
+						String evHour = sc.next();
+						
+						System.out.println("Inserisci prezzo: ");
+						String evPrice = sc.next();
+						
+						progEv.addEvent(new Concerto(evName, evDate, evSeats, evHour, evPrice));
+					}
+					else {
+						progEv.addEvent(new Evento(evName, evDate, evSeats));						
+					}
+						
 					continue;
 				}else {
 					break;
@@ -49,23 +61,8 @@ public class Main {
 			}
 		}
 		
-		System.out.println("La tua lista eventi: \n");
-		
 		List<String> progEvList = progEv.getProgrammaEventi();
 		
-		for (int i = 0; i < progEvList.size(); i++) {
-
-			String p = progEvList.get(i);
-			
-			if(p.equals(progEv.getTitle())) {
-				System.out.println(p + ":" + "\n");
-			}else {
-				System.out.println("\t" + i + ". " + p + "\n");				
-			}
-			
-		}
-		
-
 		// Milestone 2
 		Evento ev = null;
 		while (true && progEv.getEventsCount() > 0) {
@@ -152,13 +149,19 @@ public class Main {
 		}
 		
 		sc.close();
+
+		System.out.println("La tua lista eventi: \n");
 		
-		try {
-			Evento eve = new Concerto("Liz ziz", "2222-11-11", 50, "21:00:00", "40.99");
-			System.out.println(eve);
-		} catch (Exception e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		for (int i = 0; i < progEvList.size(); i++) {
+
+			String p = progEvList.get(i);
+			
+			if(p.equals(progEv.getTitle())) {
+				System.out.println(p + ":" + "\n");
+			}else {
+				System.out.println("\t" + i + ". " + p);				
+			}
+			
 		}
 	}
 	
