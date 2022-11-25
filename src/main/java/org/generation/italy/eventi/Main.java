@@ -72,30 +72,29 @@ public class Main {
 			String isChangingSeats = sc.next();
 			isChangingSeats.trim().toLowerCase();
 			
-			System.out.println("Per quale evento?");
-			
-			List<String> progEvListChoice = progEv.getProgrammaEventi();
-			
-			for (int i = 0; i < progEvList.size(); i++) {
-
-				String p = progEvList.get(i);
-				
-				if(!p.equals(progEv.getTitle())) {
-					System.out.println(i + ". " + p + "\n");				
-				}
-				
-			}
-			
-			int userSelectedEvent = sc.nextInt();
-			
-			try {
-				ev = progEv.getExactEvento(userSelectedEvent - 1);
-			} catch (Exception e) {
-				System.err.println(e.getMessage());
-				continue;
-			}
 			
 			if(isChangingSeats.equals("y")) {
+				System.out.println("Per quale evento?");
+				
+				for (int i = 0; i < progEvList.size(); i++) {
+					
+					String p = progEvList.get(i);
+					
+					if(!p.equals(progEv.getTitle())) {
+						System.out.println(i + ". " + p + "\n");				
+					}
+					
+				}
+				
+				int userSelectedEvent = sc.nextInt();
+				
+				try {
+					ev = progEv.getExactEvento(userSelectedEvent - 1);
+				} catch (Exception e) {
+					System.err.println(e.getMessage());
+					continue;
+				}
+				
 				System.out.println("1-Aggiungi prenotazioni\n2-RimuoviPrenotazioni\nPremi qualsiasi numero per tornare al menù precedente.");
 				System.out.println("-------");
 				System.out.println("Posti attualmente disponibili: " + ev.getTotalSeats()
