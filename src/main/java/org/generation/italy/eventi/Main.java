@@ -1,53 +1,102 @@
 package org.generation.italy.eventi;
 
 import java.time.LocalDate;
+import java.util.Scanner;
 
 public class Main {
 
 	public static void main(String[] args) {
 		
 		Evento ev = null;
-		
-		try {
-			ev = new Evento("sagra della polpetta", LocalDate.now(), 20);
-			System.out.println(ev);
+		Scanner sc = null;
 			
-			System.out.println("--------------------------");
-			ev.setTitle("Sagra della polpetta di castrignano del capo provincia di belluno");
-			ev.setDate(LocalDate.parse("3000-12-13"));
-			System.out.println(ev);
+			try {
+				sc = new Scanner(System.in);
+				
+				System.out.println("Inserisci un nuovo evento:");
+				System.out.print("Nome: ");
+				String evName = sc.next();
+				
+				System.out.println("Data (formato Anno-mese-giorno: ");
+				String date = sc.next();
+				LocalDate evDate = LocalDate.parse(date);
+				
+				System.out.print("Posti disponibili nell'evento: ");
+				int evSeats = sc.nextInt();
+				
+				ev = new Evento(evName, evDate, evSeats);
+						
+				System.out.println("Evento: ---------------------------");
+				System.out.println(ev);
+				
+				
+			} catch (Exception e) {
+				System.out.println(e.getMessage());
+			} 
 			
-			
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
-		
-		System.out.println("-------------");
-		System.out.println(ev);
-		System.out.println("--------------------------");
-		
-		
-		try {
-			for (int i = 0; i < 20; i++) {
-				ev.bookASeat();
+			// Milestone 2
+			Scanner scn = new Scanner(System.in);
+			while (true) {
+				System.out.println("Vuoi aggiungere o rimuovere prenotazioni? y/n");
+				String isMod = scn.next();
+				isMod.trim().toLowerCase();
+				if(isMod.equals("y")) {
+					System.out.println("1-Aggiungi prenotazioni\n2-RimuoviPrenotazioni\nPremi qualsiasi numero per tornare al menù precedente.");
+					System.out.println("-------");
+					System.out.println("Posti attualmente disponibili: " + ev.getTotalSeats()
+					+ "\nPosti attualmente prenotati: " + ev.getBookedSeats());
+					System.out.println("-------");
+					int bookingMng = scn.nextInt();
+					
+					if(bookingMng == 1) {
+						
+						System.out.println("Quante prenotazioni desidera aggiungere?");
+						
+						
+						int seatsToBook = scn.nextInt();
+						
+						
+							try {
+								for (int i = 0; i < seatsToBook; i++) {
+									
+									ev.bookASeat();
+									
+								}
+							} catch (Exception e) {
+								System.out.println(e.getMessage());
+								continue;
+							}
+						
+						continue;
+						
+					}else if(bookingMng == 2) {
+						System.out.println("Quanti posti desidera cancellare?");
+						int resToRemove = scn.nextInt();
+						
+						try {
+							for (int i = 0; i < resToRemove; i++) {
+								
+								ev.cancelReservation();
+								
+							}
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+							continue;
+						}
+						
+						continue;
+					}else {
+						System.out.println("Tornato al menù precedente.");
+						continue;
+					}
+					
+				}else {
+					break;
+				}
 			}
-			System.out.println(ev);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}					
-
-		try {
-			for (int i = 0; i < 20; i++) {
-				ev.cancelReservation();
-			}
-			ev.cancelReservation();
 			
-			System.out.println("----------------------------");
-			
-			System.out.println(ev);
-		} catch (Exception e) {
-			System.out.println(e.getMessage());
-		}
+			sc.close();
+			scn.close();
 	}
 	
 }
