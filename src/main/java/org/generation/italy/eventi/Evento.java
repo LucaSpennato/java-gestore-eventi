@@ -1,6 +1,7 @@
 package org.generation.italy.eventi;
 
 import java.time.LocalDate;
+import java.time.LocalTime;
 
 public class Evento {
 
@@ -9,7 +10,7 @@ public class Evento {
 	private int totalSeats;
 	private int bookedSeats;
 	
-	public Evento(String title, LocalDate date, int totalSeats) throws Exception {
+	public Evento(String title, String date, int totalSeats) throws Exception {
 		
 		setTitle(title);
 		setDate(date);
@@ -27,11 +28,14 @@ public class Evento {
 	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) throws Exception {
-		if(date.isBefore(LocalDate.now())) {
+	public void setDate(String date) throws Exception {
+		
+		LocalDate d = LocalDate.parse(date);
+		
+		if(d.isBefore(LocalDate.now())) {
 			throw new Exception("La data non può essere passata.");
 		}
-		this.date = date;
+		this.date = d;
 	}
 	
 	public int getTotalSeats() {

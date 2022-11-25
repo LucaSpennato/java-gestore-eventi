@@ -16,7 +16,6 @@ public class Main {
 		String listName = sc.next();
 		ProgrammaEventi progEv = new ProgrammaEventi(listName);
 
-		
 		while(true) {
 			
 			try {
@@ -37,7 +36,7 @@ public class Main {
 					System.out.println("Posti evento: ");
 					int evSeats = sc.nextInt();
 					
-					progEv.addEvent(new Evento(evName, LocalDate.parse(evDate), evSeats));
+					progEv.addEvent(new Evento(evName, evDate, evSeats));
 					
 					continue;
 				}else {
@@ -49,6 +48,7 @@ public class Main {
 				continue;
 			}
 		}
+		
 		System.out.println("La tua lista eventi: \n");
 		
 		List<String> progEvList = progEv.getProgrammaEventi();
@@ -152,11 +152,9 @@ public class Main {
 		}
 		
 		sc.close();
-		LocalDate d = LocalDate.parse("2222-11-11");
-		LocalTime t = LocalTime.parse("10:15:30");
 		
 		try {
-			Evento eve = new Concerto("Liz ziz", d, 50, t, "40.99");
+			Evento eve = new Concerto("Liz ziz", "2222-11-11", 50, "21:00:00", "40.99");
 			System.out.println(eve);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block

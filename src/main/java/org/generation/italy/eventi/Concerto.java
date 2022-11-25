@@ -1,7 +1,6 @@
 package org.generation.italy.eventi;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
@@ -10,7 +9,7 @@ public class Concerto extends Evento {
 	private LocalTime hour;
 	private BigDecimal price;
 	
-	public Concerto(String title, LocalDate date, int totalSeats, LocalTime hour, String price) throws Exception {
+	public Concerto(String title, String date, int totalSeats, String hour, String price) throws Exception {
 	
 		super(title, date, totalSeats);
 		
@@ -21,13 +20,14 @@ public class Concerto extends Evento {
 	public LocalTime getHour() {
 		return hour;
 	}
-	private void setHour(LocalTime hour) {
+	private void setHour(String hour) {
 		
+		LocalTime h = LocalTime.parse(hour);
 		DateTimeFormatter f = DateTimeFormatter.ISO_TIME;
 		
-		hour.format(f);
+		h.format(f);
 		
-		this.hour = hour;
+		this.hour = h;
 	}
 
 	public float getPrice() {
