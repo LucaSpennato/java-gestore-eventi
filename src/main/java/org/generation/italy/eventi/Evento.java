@@ -9,12 +9,12 @@ public class Evento {
 	private int totalSeats;
 	private int bookedSeats;
 	
-	public Evento(String title, LocalDate date, int totalSeats, int bookedSeats) {
+	public Evento(String title, LocalDate date, int totalSeats) throws Exception {
 		
 		setTitle(title);
 		setDate(date);
 		setTotalSeats(totalSeats);
-		setBookedSeats(bookedSeats);
+		setBookedSeats(0);
 	}
 	
 	public String getTitle() {
@@ -27,14 +27,20 @@ public class Evento {
 	public LocalDate getDate() {
 		return date;
 	}
-	public void setDate(LocalDate date) {
+	public void setDate(LocalDate date) throws Exception {
+		if(date.isBefore(LocalDate.now())) {
+			throw new Exception("La data non può essere passata.");
+		}
 		this.date = date;
 	}
 	
 	public int getTotalSeats() {
 		return totalSeats;
 	}
-	private void setTotalSeats(int totalSeats) {
+	private void setTotalSeats(int totalSeats) throws Exception {
+		if(totalSeats <= 0) {
+			throw new Exception("I posti non possono essere minori di 0.");
+		}
 		this.totalSeats = totalSeats;
 	}
 	
