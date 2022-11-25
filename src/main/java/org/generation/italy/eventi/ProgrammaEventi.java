@@ -1,5 +1,6 @@
 package org.generation.italy.eventi;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,25 @@ public class ProgrammaEventi {
 	
 	public int getEventsCount() {
 		return events.size();
+	}
+	public void clearAllEvents() {
+		events.clear();
+	}
+	
+	public List<Evento> getEventsInDate(LocalDate d){
+		
+		List<Evento> listDate = new ArrayList<>();
+		
+		for (Evento event : events) {
+			
+			if(event.getDate().equals(d)) {
+				listDate.add(event);
+			}
+			
+		}
+		
+		return listDate;
+		
 	}
 	
 	@Override
