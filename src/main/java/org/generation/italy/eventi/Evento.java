@@ -75,9 +75,7 @@ public class Evento {
 	public String toString() {
 
 		return "Title: " + getTitle()
-				+ "\nDate: " + getDate()
-				+ "\nTotal seats: " + getTotalSeats()
-				+ "\nBooked seats: " + getBookedSeats();
+				+ "\nDate: " + getDate();
 	}
 	
 }
