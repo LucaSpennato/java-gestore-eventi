@@ -31,13 +31,23 @@ public class Main {
 			for (int i = 0; i < 20; i++) {
 				ev.bookASeat();
 			}
-			ev.bookASeat();
 			System.out.println(ev);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}					
 
-
+		try {
+			for (int i = 0; i < 20; i++) {
+				ev.cancelReservation();
+			}
+			ev.cancelReservation();
+			
+			System.out.println("----------------------------");
+			
+			System.out.println(ev);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
 }

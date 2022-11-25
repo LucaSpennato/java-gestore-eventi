@@ -61,6 +61,16 @@ public class Evento {
 		totalSeats--;
 	}
 	
+	public void cancelReservation() throws Exception {
+		if(bookedSeats == 0) {
+			throw new Exception("Non ci sono posti prenotati.");
+		}else if(LocalDate.now().isAfter(date)) {
+			throw new Exception("L'evento è già terminato!");
+		}
+		bookedSeats--;
+		totalSeats++;
+	}
+	
 	@Override
 	public String toString() {
 
