@@ -1,6 +1,7 @@
 package org.generation.italy.eventi;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Scanner;
 
 public class Main {
@@ -48,77 +49,108 @@ public class Main {
 		}
 		System.out.println("La tua lista eventi: \n");
 		
-		for (String ev : progEv.getProgrammaEventi()) {
+		List<String> progEvList = progEv.getProgrammaEventi();
+		
+		for (int i = 0; i < progEvList.size(); i++) {
+
+			String p = progEvList.get(i);
 			
-			System.out.println("\t" + ev + "\n");
+			if(p.equals(progEv.getTitle())) {
+				System.out.println(p + ":" + "\n");
+			}else {
+				System.out.println("\t" + i + ". " + p + "\n");				
+			}
 			
-		}	
+		}
 		
 
+		// Milestone 2
+		Evento ev = null;
+		while (true && progEv.getEventsCount() > 0) {
 			
-			// Milestone 2
-//			Scanner scn = new Scanner(System.in);
-//			while (true) {
-//				System.out.println("Vuoi aggiungere o rimuovere prenotazioni? y/n");
-//				String isMod = scn.next();
-//				isMod.trim().toLowerCase();
-//				if(isMod.equals("y")) {
-//					System.out.println("1-Aggiungi prenotazioni\n2-RimuoviPrenotazioni\nPremi qualsiasi numero per tornare al menù precedente.");
-//					System.out.println("-------");
-//					System.out.println("Posti attualmente disponibili: " + ev.getTotalSeats()
-//					+ "\nPosti attualmente prenotati: " + ev.getBookedSeats());
-//					System.out.println("-------");
-//					int bookingMng = scn.nextInt();
-//					
-//					if(bookingMng == 1) {
-//						
-//						System.out.println("Quante prenotazioni desidera aggiungere?");
-//						
-//						
-//						int seatsToBook = scn.nextInt();
-//						
-//						
-//							try {
-//								for (int i = 0; i < seatsToBook; i++) {
-//									
-//									ev.bookASeat();
-//									
-//								}
-//							} catch (Exception e) {
-//								System.out.println(e.getMessage());
-//								continue;
-//							}
-//						
-//						continue;
-//						
-//					}else if(bookingMng == 2) {
-//						System.out.println("Quanti posti desidera cancellare?");
-//						int resToRemove = scn.nextInt();
-//						
-//						try {
-//							for (int i = 0; i < resToRemove; i++) {
-//								
-//								ev.cancelReservation();
-//								
-//							}
-//						} catch (Exception e) {
-//							System.out.println(e.getMessage());
-//							continue;
-//						}
-//						
-//						continue;
-//					}else {
-//						System.out.println("Tornato al menù precedente.");
-//						continue;
-//					}
-//					
-//				}else {
-//					break;
-//				}
-//			}
-//			
-//			scn.close();
-//			sc.close();
+			System.out.println("Vuoi aggiungere o rimuovere prenotazioni? y/n");
+			String isChangingSeats = sc.next();
+			isChangingSeats.trim().toLowerCase();
+			
+			System.out.println("Per quale evento?");
+			
+			List<String> progEvListChoice = progEv.getProgrammaEventi();
+			
+			for (int i = 0; i < progEvList.size(); i++) {
+
+				String p = progEvList.get(i);
+				
+				if(!p.equals(progEv.getTitle())) {
+					System.out.println(i + ". " + p + "\n");				
+				}
+				
+			}
+			
+			int userSelectedEvent = sc.nextInt();
+			
+			try {
+				ev = progEv.getExactEvento(userSelectedEvent - 1);
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+				continue;
+			}
+			
+			if(isChangingSeats.equals("y")) {
+				System.out.println("1-Aggiungi prenotazioni\n2-RimuoviPrenotazioni\nPremi qualsiasi numero per tornare al menù precedente.");
+				System.out.println("-------");
+				System.out.println("Posti attualmente disponibili: " + ev.getTotalSeats()
+				+ "\nPosti attualmente prenotati: " + ev.getBookedSeats());
+				System.out.println("-------");
+				int bookingMng = sc.nextInt();
+				
+				if(bookingMng == 1) {
+					
+					System.out.println("Quante prenotazioni desidera aggiungere?");
+					
+					
+					int seatsToBook = sc.nextInt();
+					
+					
+						try {
+							for (int i = 0; i < seatsToBook; i++) {
+								
+								ev.bookASeat();
+								
+							}
+						} catch (Exception e) {
+							System.out.println(e.getMessage());
+							continue;
+						}
+					
+					continue;
+					
+				}else if(bookingMng == 2) {
+					System.out.println("Quanti posti desidera cancellare?");
+					int resToRemove = sc.nextInt();
+					
+					try {
+						for (int i = 0; i < resToRemove; i++) {
+							
+							ev.cancelReservation();
+							
+						}
+					} catch (Exception e) {
+						System.out.println(e.getMessage());
+						continue;
+					}
+					
+					continue;
+				}else {
+					System.out.println("Tornato al menù precedente.");
+					continue;
+				}
+				
+			}else {
+				break;
+			}
+		}
+		
+		sc.close();
 	}
 	
 }

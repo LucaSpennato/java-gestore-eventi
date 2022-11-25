@@ -94,6 +94,15 @@ public class ProgrammaEventi {
 		
 	}
 	
+	public Evento getExactEvento(int i) throws Exception {
+		
+		if(i > getEventsCount() - 1) {
+			throw new Exception("Ci sono solo " + getEventsCount() + "eventi nella lista!");
+		}
+		
+		return events.get(i);
+	}
+	
 	@Override
 	public String toString() {
 
