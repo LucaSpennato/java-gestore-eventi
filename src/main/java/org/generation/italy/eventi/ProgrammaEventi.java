@@ -66,11 +66,11 @@ public class ProgrammaEventi {
 		
 		
 		
-		events.sort(new DateComparator());
+		events.sort(new EventoDateComparator());
 		
 		for (Evento event : events) {
 			
-			String formattedEventInfo = event.getTitle() + "-" + event.getDate();
+			String formattedEventInfo = event.getTitle() + " - " + event.getDate();
 			programmedEvents.add(formattedEventInfo);
 		}
 		
@@ -78,7 +78,7 @@ public class ProgrammaEventi {
 		
 	}
 	
-	private static class DateComparator implements Comparator<Evento>{
+	private static class EventoDateComparator implements Comparator<Evento>{
 
 		@Override
 		public int compare(Evento o1, Evento o2) {

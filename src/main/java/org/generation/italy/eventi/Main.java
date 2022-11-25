@@ -7,49 +7,54 @@ public class Main {
 
 	public static void main(String[] args) {
 		
-		ProgrammaEventi progEv = null;
-		Evento ev = null;
-		Scanner sc = null;
+		Scanner sc = new Scanner(System.in);
 		
-		try {
-			
-			progEv = new ProgrammaEventi("Estate paxxa");
-			
-			progEv.addEvent(new Evento("sagra", LocalDate.parse("3333-11-12"), 50));
-			progEv.addEvent(new Evento("concerto", LocalDate.parse("3333-11-13"), 20));
-			progEv.addEvent(new Evento("ammaccabanane", LocalDate.parse("3333-11-15"), 50));
-			progEv.addEvent(new Evento("polpettata", LocalDate.parse("3333-11-20"), 20));
+		System.out.print("Crea una lista di eventi.\nNome della lista: ");
+		String listName = sc.next();
+		ProgrammaEventi progEv = new ProgrammaEventi(listName);
 
+		
+		while(true) {
 			
-			System.out.println(progEv.getProgrammaEventi());
-			
-		} catch (Exception e) {
-			System.err.println(e.getMessage());
+			try {
+				
+				System.out.println("Vuoi aggiungere un evento alla lista di eventi? y/n");
+				System.out.println("Numero eventi presenti: " + progEv.getEventsCount());
+				String wantToAddEvent = sc.next();
+				wantToAddEvent.trim().toLowerCase();
+				
+				if(wantToAddEvent.equals("y")) {
+					
+					System.out.println("Nome evento: ");
+					String evName = sc.next();
+					
+					System.out.println("Data evento: (aaaa-mm-gg)");
+					String evDate = sc.next();
+					
+					System.out.println("Posti evento: ");
+					int evSeats = sc.nextInt();
+					
+					progEv.addEvent(new Evento(evName, LocalDate.parse(evDate), evSeats));
+					
+					continue;
+				}else {
+					break;
+				}
+				
+			} catch (Exception e) {
+				System.err.println(e.getMessage());
+				continue;
+			}
 		}
+		System.out.println("La tua lista eventi: \n");
+		
+		for (String ev : progEv.getProgrammaEventi()) {
 			
-//			try {
-//				sc = new Scanner(System.in);
-//				
-//				System.out.println("Inserisci un nuovo evento:");
-//				System.out.print("Nome: ");
-//				String evName = sc.next();
-//				
-//				System.out.println("Data (formato Anno-mese-giorno: ");
-//				String date = sc.next();
-//				LocalDate evDate = LocalDate.parse(date);
-//				
-//				System.out.print("Posti disponibili nell'evento: ");
-//				int evSeats = sc.nextInt();
-//				
-//				ev = new Evento(evName, evDate, evSeats);
-//						
-//				System.out.println("Evento: ---------------------------");
-//				System.out.println(ev);
-//				
-//				
-//			} catch (Exception e) {
-//				System.out.println(e.getMessage());
-//			} 
+			System.out.println("\t" + ev + "\n");
+			
+		}	
+		
+
 			
 			// Milestone 2
 //			Scanner scn = new Scanner(System.in);
