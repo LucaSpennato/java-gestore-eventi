@@ -1,6 +1,8 @@
 package org.generation.italy.eventi;
 
+import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Scanner;
 
@@ -150,6 +152,16 @@ public class Main {
 		}
 		
 		sc.close();
+		LocalDate d = LocalDate.parse("2222-11-11");
+		LocalTime t = LocalTime.parse("10:15:30");
+		
+		try {
+			Evento eve = new Concerto("Liz ziz", d, 50, t, "40.99");
+			System.out.println(eve);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 	
 }
