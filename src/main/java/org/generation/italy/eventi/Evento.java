@@ -51,6 +51,15 @@ public class Evento {
 		this.bookedSeats = bookedSeats;
 	}
 	
+	public void bookASeat() throws Exception {
+		if(totalSeats == 0) {
+			throw new Exception("Non ci sono più posti disponibili.");
+		}else if(LocalDate.now().isAfter(date)) {
+			throw new Exception("L'evento è già terminato!");
+		}
+		bookedSeats++;
+		totalSeats--;
+	}
 	
 	@Override
 	public String toString() {
