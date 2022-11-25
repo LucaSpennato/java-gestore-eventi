@@ -15,14 +15,13 @@ public class Main {
 			
 			progEv = new ProgrammaEventi("Estate paxxa");
 			
-			progEv.addEvent(new Evento("sagra", LocalDate.parse("3333-11-11"), 50));
-			progEv.addEvent(new Evento("concerto", LocalDate.now(), 20));
-			progEv.addEvent(new Evento("ammaccabanane", LocalDate.parse("3333-11-11"), 50));
-			progEv.addEvent(new Evento("polpettata", LocalDate.now(), 20));
+			progEv.addEvent(new Evento("sagra", LocalDate.parse("3333-11-12"), 50));
+			progEv.addEvent(new Evento("concerto", LocalDate.parse("3333-11-13"), 20));
+			progEv.addEvent(new Evento("ammaccabanane", LocalDate.parse("3333-11-15"), 50));
+			progEv.addEvent(new Evento("polpettata", LocalDate.parse("3333-11-20"), 20));
 
-			LocalDate dateToSearch = LocalDate.parse("3333-11-11");
 			
-			System.out.println(progEv.getEventsInDate(LocalDate.now()));
+			System.out.println(progEv.getProgrammaEventi());
 			
 		} catch (Exception e) {
 			System.err.println(e.getMessage());

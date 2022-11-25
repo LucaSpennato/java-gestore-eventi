@@ -2,6 +2,7 @@ package org.generation.italy.eventi;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 
 public class ProgrammaEventi {
@@ -54,6 +55,42 @@ public class ProgrammaEventi {
 		}
 		
 		return listDate;
+		
+	}
+	
+	public List<String> getProgrammaEventi(){
+		
+		List<String> programmedEvents = new ArrayList<>();
+		
+		programmedEvents.add(title);
+		
+		
+		
+		events.sort(new DateComparator());
+		
+		for (Evento event : events) {
+			
+			String formattedEventInfo = event.getTitle() + "-" + event.getDate();
+			programmedEvents.add(formattedEventInfo);
+		}
+		
+		return programmedEvents;
+		
+	}
+	
+	private static class DateComparator implements Comparator<Evento>{
+
+		@Override
+		public int compare(Evento o1, Evento o2) {
+			
+			if(o1.getDate().isAfter(o2.getDate())) {
+				return 1;
+			}else if(o2.getDate().isAfter(o1.getDate())) {
+				return -1;
+			}
+			
+			return 0;
+		}
 		
 	}
 	
