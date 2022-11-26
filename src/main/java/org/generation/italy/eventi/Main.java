@@ -13,9 +13,9 @@ public class Main {
 			
 			ProgrammaEventiUnici pge = new ProgrammaEventiUnici("ciao");
 			
-			Evento e1 = new Evento("Festa pazza", "2222-11-11", 400);
-			Evento e2 = new Evento("Festa pazzasss", "2222-11-11", 100);
-			Evento e3 = new Evento("Festa pazzissima", "2222-11-11", 600);
+			Evento e1 = new Evento("Festa pazza", "2222-11-20", 400);
+			Evento e2 = new Evento("Festa pazzasss", "2222-11-30", 100);
+			Evento e3 = new Evento("Festa pazzissima", "2222-11-21", 600);
 			
 			pge.addEvent(e1);
 			pge.addEvent(e2);
@@ -25,6 +25,9 @@ public class Main {
 			System.out.println(pge.getMinPostiTotali());
 			
 			System.out.println(pge.orderedPrint());
+			
+			System.out.println("Primo evento: " + pge.getFirstEvent());
+			System.out.println("Ultimo evento: " + pge.getLastEvent());
 			
 		} catch (Exception e1) {
 

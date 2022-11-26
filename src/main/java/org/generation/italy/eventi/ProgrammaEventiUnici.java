@@ -11,6 +11,7 @@ public class ProgrammaEventiUnici {
 
 	private String title;
 	private Set<Evento> events;
+	private List<Evento> evs;
 	
 	public ProgrammaEventiUnici(String title) {
 		
@@ -103,16 +104,33 @@ public class ProgrammaEventiUnici {
 		return minValue;
 	}
 	
-	public List<Evento> orderedPrint(){
-		
-		List<Evento> evs = new ArrayList<>();
+	public void toList() {
+		evs = new ArrayList<>();
 		
 		for (Evento ev : events) {
 			evs.add(ev);
 		}
-		evs.sort((e1,e2)-> e2.getTitle().length() - e1.getTitle().length());
+	}
+	
+	public List<Evento> orderedPrint(){
+		toList();
 		
+		evs.sort((e1,e2)-> e2.getTitle().length() - e1.getTitle().length());
 		return evs;
+	}
+	
+	public Evento getFirstEvent(){
+		toList();
+		
+		evs.sort((e1, e2) -> e1.getDate().compareTo(e2.getDate()));
+		return evs.get(0);
+	}
+	
+	public Evento getLastEvent(){
+		toList();
+		
+		evs.sort((e1, e2) -> e1.getDate().compareTo(e2.getDate()));
+		return evs.get(evs.size() - 1);
 	}
 	
 	@Override
