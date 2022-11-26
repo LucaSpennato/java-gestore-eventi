@@ -24,6 +24,8 @@ public class Main {
 			System.out.println(pge.getMaxPostiTotali());
 			System.out.println(pge.getMinPostiTotali());
 			
+			System.out.println(pge.orderedPrint());
+			
 		} catch (Exception e1) {
 
 			e1.printStackTrace();

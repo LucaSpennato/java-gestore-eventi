@@ -91,7 +91,7 @@ public class ProgrammaEventiUnici {
 		return maxValue;
 	}
 	
-public int getMinPostiTotali() {
+	public int getMinPostiTotali() {
 		
 		int minValue = Integer.MAX_VALUE;
 		
@@ -101,6 +101,18 @@ public int getMinPostiTotali() {
 			}
 		}
 		return minValue;
+	}
+	
+	public List<Evento> orderedPrint(){
+		
+		List<Evento> evs = new ArrayList<>();
+		
+		for (Evento ev : events) {
+			evs.add(ev);
+		}
+		evs.sort((e1,e2)-> e2.getTitle().length() - e1.getTitle().length());
+		
+		return evs;
 	}
 	
 	@Override
