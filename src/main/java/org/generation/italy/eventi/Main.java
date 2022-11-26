@@ -9,6 +9,18 @@ public class Main {
 		
 		Scanner sc = new Scanner(System.in);
 		
+		try {
+			Evento evento = new Evento("Festa pazza", "2222-11-11", 500);
+			Evento evento2 = new Evento("Festa pazza", "2222-11-11", 500);
+			Evento evento3 = new Evento("Festa pazzissima", "2222-11-11", 500);
+					
+			System.out.println(evento.equals(evento3));
+			
+		} catch (Exception e1) {
+
+			e1.printStackTrace();
+		}
+		
 		System.out.print("Crea una lista di eventi.\nNome della lista: ");
 		String listName = sc.next();
 		ProgrammaEventi progEv = new ProgrammaEventi(listName);

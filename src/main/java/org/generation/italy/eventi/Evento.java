@@ -1,7 +1,6 @@
 package org.generation.italy.eventi;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
 public class Evento {
 
@@ -73,6 +72,15 @@ public class Evento {
 		}
 		bookedSeats--;
 		totalSeats++;
+	}
+	
+	public boolean equals(Evento ev) {
+		
+		if(getTitle() == ev.getTitle() 
+			&& getDate().isEqual(ev.getDate())
+			) return true;
+		
+		return false;
 	}
 	
 	@Override
