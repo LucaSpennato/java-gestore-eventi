@@ -10,11 +10,19 @@ public class Main {
 		Scanner sc = new Scanner(System.in);
 		
 		try {
-			Evento evento = new Evento("Festa pazza", "2222-11-11", 500);
-			Evento evento2 = new Evento("Festa pazza", "2222-11-11", 500);
-			Evento evento3 = new Evento("Festa pazzissima", "2222-11-11", 500);
-					
-			System.out.println(evento.equals(evento3));
+			
+			ProgrammaEventiUnici pge = new ProgrammaEventiUnici("ciao");
+			
+			Evento e1 = new Evento("Festa pazza", "2222-11-11", 400);
+			Evento e2 = new Evento("Festa pazzasss", "2222-11-11", 100);
+			Evento e3 = new Evento("Festa pazzissima", "2222-11-11", 600);
+			
+			pge.addEvent(e1);
+			pge.addEvent(e2);
+			pge.addEvent(e3);
+			
+			System.out.println(pge.getMaxPostiTotali());
+			System.out.println(pge.getMinPostiTotali());
 			
 		} catch (Exception e1) {
 
